@@ -24,6 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
       'Index 2: School',
       style: optionStyle,
     ),
+    Text(
+      'Index 3: Contact',
+      style: optionStyle,
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -35,58 +39,103 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(''),
-        ),
-        body: Center(
-          child: _widgetOptions[_selectedIndex],
-        ),
-        drawer: Drawer(
-            child: ListView(
+      appBar: AppBar(
+        title: const Text(''),
+      ),
+      body: Center(
+        child: _widgetOptions[_selectedIndex],
+      ),
+      drawer: Drawer(
+        child: ListView(
           padding: EdgeInsets.zero,
           children: [
             const UserAccountsDrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.black
+              decoration: BoxDecoration(color: Colors.black),
+              accountName: Text(
+                'Alef Menezes',
+                style: TextStyle(fontFamily: 'Inter'),
               ),
-              accountName: Text('Alef Menezes'),
-              accountEmail: Text('alefmenezes.works@gmail.com'),
+              accountEmail: Text('alefmenezes.works@gmail.com',
+                  style: TextStyle(fontFamily: 'Inter')),
               currentAccountPicture: CircleAvatar(
                 backgroundImage: AssetImage('AM.png'),
               ),
             ),
-            
             ListTile(
-              title: const Text('Home'),
-              selected: _selectedIndex == 0,
+              title: const Row(
+                children: [
+                  Icon(Icons.home),
+                  SizedBox(
+                    width: 8,
+                  ),
+                   Text('Home',
+                      style: TextStyle(
+                          fontFamily: 'Inter', fontWeight: FontWeight.bold)),
+                ],
+              ),
+              selected: _selectedIndex == 0, hoverColor: Colors.grey,selectedColor: Color.fromRGBO(5, 2, 139, 1),
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(0);
-                // Then close the drawer
+
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('Business'),
-              selected: _selectedIndex == 1,
+              title: const Row(
+                children: [
+                  Icon(Icons.info_rounded),
+                  SizedBox(
+                    width: 8,
+                  ),
+                   Text('About me',
+                      style: TextStyle(
+                          fontFamily: 'Inter', fontWeight: FontWeight.bold)),
+                ],
+              ),
+              selected: _selectedIndex == 1,hoverColor: Colors.grey,selectedColor: Color.fromRGBO(5, 2, 139, 1),
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(1);
-                // Then close the drawer
+
                 Navigator.pop(context);
               },
             ),
             ListTile(
-              title: const Text('School'),
-              selected: _selectedIndex == 2,
+              title: const Row(
+                children: [
+                   Icon(Icons.rebase_edit),
+                  SizedBox(width: 8,),
+                   Text('Projects',
+                      style: TextStyle(
+                          fontFamily: 'Inter', fontWeight: FontWeight.bold)),
+                ],
+              ),
+              selected: _selectedIndex == 2, hoverColor: Colors.grey,selectedColor: Color.fromRGBO(5, 2, 139, 1),
               onTap: () {
-                // Update the state of the app
                 _onItemTapped(2);
-                // Then close the drawer
+
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Row(
+                children: [
+                   Icon(Icons.quick_contacts_dialer),
+                  SizedBox(width: 8,),
+                   Text('Contact',
+                      style: TextStyle(
+                          fontFamily: 'Inter', fontWeight: FontWeight.bold)),
+                ],
+              ),
+              selected: _selectedIndex == 3, hoverColor: Colors.grey,selectedColor: Color.fromRGBO(5, 2, 139, 1),
+              onTap: () {
+                _onItemTapped(3);
+
                 Navigator.pop(context);
               },
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
